@@ -28,23 +28,10 @@ e_Result e_res_error(Result error)
 
 EntityID e_res_unpack(e_Result res)
 {
-    switch (res.status)
-    {
-        case OK:
-            return res.id;
-
-        case ERR_OVERFLOW:
-            printf("Entity overflow error.\n");
-            break;
-        case ERR_EMPTY:
-            printf("Entity list empty error.\n");
-            break;
-        case ERR_NO_SUCH_ENTITY:
-            printf("Entity does not exist error.\n");
-            break;
-        default:
-            printf("Unexpected error: ENTITY.\n");
-    }
+    if(res.status == OK) return res.id;
+    printf("ENTITY: ");
+    err_print(res.status);
+    printf("\n");
     exit(-1);
 }
 
@@ -118,26 +105,26 @@ e_Result _elist_delete(EntityList* elist, EntityID id)
     return e_res_error(ERR_NO_SUCH_ENTITY); 
 }
 
-//  TODO: replace with DArray
-EIDArray elist_query(EntityList* elist, EntityConfiguration config)
+DArray elist_query(EntityList* elist, EntityConfiguration config)
 {
-    EIDArray result;
-    result.data = malloc(sizeof(EntityID) * elist->count);
-    result.count = 0;
+    size_t elistCount = elist->count;
 
-    for (size_t i = 0; i < elist->count; i++)
+    DArray result = da_new(sizeof(EntityID), elistCount);
+    EntityID* data = result.data;
+    size_t count = 0;
+
+    for (size_t i = 0; i < elistCount; i++)
     {
         if ((config & elist->data[i].config) == config)
         {
-            result.data[result.count++] = elist->data[i].id;
+            data[count++] = elist->data[i].id;
         }       
     }
-    if (result.count == 0)
+    if (count == 0)
     {
-        free(result.data);
-        result.data = NULL;
+        da_clear(&result);
     } else {
-        result.data = realloc(result.data, sizeof(EntityID) * result.count);
+        da_resize(&result, count);
     }
     return result;
 }

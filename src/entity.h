@@ -1,10 +1,12 @@
-#ifndef CTST_ENTITY_H
-#define CTST_ENTITY_H
+#ifndef CMPLE_ENTITY_H
+#define CMPLE_ENTITY_H
 
 
 
+#include <stdlib.h>
 #include "config.h"
 #include "utils.h"
+#include "struct/darrray.h"
 
 
 #define NULL_ENTITY -1
@@ -13,11 +15,6 @@
 /* ---------------------------------- Types --------------------------------- */
 
 typedef int EntityID;
-
-typedef struct {
-    EntityID* data;
-    size_t count;
-} EIDArray;
 
 typedef enum {
     NONE      = 0,
@@ -37,7 +34,6 @@ typedef struct {
 } EntityList;
 
 
-
 /* -------------------------------- Func API -------------------------------- */
 
 EntityList elist_new();
@@ -46,8 +42,8 @@ EntityID elist_newEntity(EntityList* elist, EntityConfiguration config);
 
 EntityID elist_delete(EntityList* elist, EntityID id);
 
-EIDArray elist_query(EntityList* elist, EntityConfiguration config);
+DArray elist_query(EntityList* elist, EntityConfiguration config);
 
 
 
-#endif // CTST_ENTITY_H
+#endif // CMPLE_ENTITY_H

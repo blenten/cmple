@@ -1,5 +1,5 @@
-#ifndef CTST_CONFIG_H
-#define CTST_CONFIG_H
+#ifndef CMPLE_CONFIG_H
+#define CMPLE_CONFIG_H
 
 
 
@@ -7,4 +7,4 @@
 
 
 
-#endif // CTST_CONFIG_H
+#endif // CMPLE_CONFIG_H

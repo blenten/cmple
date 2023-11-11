@@ -1,5 +1,5 @@
-#ifndef CTST_STRUCTS_CVEC_H
-#define CTST_STRUCTS_CVEC_H
+#ifndef CMPLE_STRUCTS_CVEC_H
+#define CMPLE_STRUCTS_CVEC_H
 
 
 #include "entity.h"
@@ -25,4 +25,4 @@ void* cvec_getDatumHandle(CompactVector* cvec, EntityID id);
 void cvec_clear(CompactVector* cvec);
 
 
-#endif // CTST_STRUCTS_CVEC_H
+#endif // CMPLE_STRUCTS_CVEC_H

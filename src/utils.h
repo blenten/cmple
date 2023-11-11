@@ -1,5 +1,5 @@
-#ifndef CTST_UTILS_H_
-#define CTST_UTILS_H_
+#ifndef CMPLE_UTILS_H_
+#define CMPLE_UTILS_H_
 
 
 
@@ -13,4 +13,8 @@ typedef enum {
 
 
 
-#endif // CTST_UTILS_H_
+void err_print(Result error);
+
+
+
+#endif // CMPLE_UTILS_H_
